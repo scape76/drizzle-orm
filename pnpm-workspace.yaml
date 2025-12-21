@@ -10,11 +10,12 @@ packages:
   - integration-tests
   - typeperf-test
   - eslint-plugin-drizzle
+  - scratchpad
 onlyBuiltDependencies:
-  - '@contrast/fn-inspect'
-  - '@newrelic/native-metrics'
-  - '@prisma/client'
-  - '@prisma/engines'
+  - "@contrast/fn-inspect"
+  - "@newrelic/native-metrics"
+  - "@prisma/client"
+  - "@prisma/engines"
   - better-sqlite3
   - bufferutil
   - cpu-features

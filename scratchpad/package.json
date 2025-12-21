@@ -1,0 +1,31 @@
+{
+	"name": "scratchpad",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"play": "tsx --env-file=.env src/playground.ts",
+		"setup": "tsx src/setup.ts",
+		"migrate": "tsx src/migrate.ts",
+		"seed": "tsx src/seed.ts",
+		"full-setup": "tsx src/full-setup.ts",
+		"studio": "drizzle-kit studio",
+		"build": "echo 'Skipping build for scratchpad'",
+		"test": "echo 'Skipping tests for scratchpad'",
+		"test:types": "echo 'Skipping type tests for scratchpad'"
+	},
+	"dependencies": {
+		"dockerode": "^4.0.2",
+		"dotenv": "^17.2.3",
+		"drizzle-orm": "workspace:./drizzle-orm/dist",
+		"drizzle-seed": "workspace:./drizzle-seed/dist",
+		"pg": "^8.12.0"
+	},
+	"devDependencies": {
+		"@types/dockerode": "^3.3.31",
+		"@types/node": "^20.2.5",
+		"@types/pg": "^8.11.6",
+		"drizzle-kit": "workspace:./drizzle-kit/dist",
+		"tsx": "^4.21.0"
+	}
+}

@@ -5,9 +5,12 @@ import { PgColumnBuilder } from './common.ts';
 
 export abstract class PgIntColumnBaseBuilder<
 	T extends ColumnBuilderBaseConfig<ColumnType>,
+	TRuntimeConfig extends { generatedIdentity: GeneratedIdentityConfig } = {
+		generatedIdentity: GeneratedIdentityConfig;
+	},
 > extends PgColumnBuilder<
 	T,
-	{ generatedIdentity: GeneratedIdentityConfig }
+	TRuntimeConfig
 > {
 	static override readonly [entityKind]: string = 'PgIntColumnBaseBuilder';
 

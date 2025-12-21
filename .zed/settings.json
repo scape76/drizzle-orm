@@ -1,0 +1,46 @@
+{
+	"languages": {
+		"TypeScript": {
+			"format_on_save": "on",
+			"formatter": {
+				"external": {
+					"command": "pnpm",
+					"arguments": ["dprint", "fmt", "--stdin", "{buffer_path}"]
+				}
+			},
+			"code_actions_on_format": {
+				"source.fixAll.eslint": false
+			}
+		},
+		"JavaScript": {
+			"format_on_save": "on",
+			"formatter": {
+				"external": {
+					"command": "pnpm",
+					"arguments": ["dprint", "fmt", "--stdin", "{buffer_path}"]
+				}
+			},
+			"code_actions_on_format": {
+				"source.fixAll.eslint": false
+			}
+		},
+		"JSON": {
+			"format_on_save": "on",
+			"formatter": {
+				"external": {
+					"command": "pnpm",
+					"arguments": ["dprint", "fmt", "--stdin", "{buffer_path}"]
+				}
+			}
+		}
+	},
+	"lsp": {
+		"eslint": {
+			"settings": {
+				"codeActionOnSave": {
+					"mode": "all"
+				}
+			}
+		}
+	}
+}

@@ -49,16 +49,11 @@
 				"scripts/fix-imports.ts",
 				"../tsconfig.json"
 			],
-			"outputs": [
-				"dist/**",
-				"dist-dts/**"
-			],
+			"outputs": ["dist/**", "dist-dts/**"],
 			"outputLogs": "new-only"
 		},
 		"drizzle-kit#build": {
-			"dependsOn": [
-				"drizzle-orm#build"
-			],
+			"dependsOn": ["drizzle-orm#build"],
 			"inputs": [
 				"src/**/*.ts",
 				"package.json",
@@ -71,16 +66,11 @@
 				"scripts/fix-imports.ts",
 				"../tsconfig.json"
 			],
-			"outputs": [
-				"dist/**",
-				"dist-dts/**"
-			],
+			"outputs": ["dist/**", "dist-dts/**"],
 			"outputLogs": "new-only"
 		},
 		"drizzle-zod#build": {
-			"dependsOn": [
-				"drizzle-orm#build"
-			],
+			"dependsOn": ["drizzle-orm#build"],
 			"inputs": [
 				"src/**/*.ts",
 				"package.json",
@@ -93,16 +83,11 @@
 				"scripts/fix-imports.ts",
 				"../tsconfig.json"
 			],
-			"outputs": [
-				"dist/**",
-				"dist-dts/**"
-			],
+			"outputs": ["dist/**", "dist-dts/**"],
 			"outputLogs": "new-only"
 		},
 		"drizzle-typebox#build": {
-			"dependsOn": [
-				"drizzle-orm#build"
-			],
+			"dependsOn": ["drizzle-orm#build"],
 			"inputs": [
 				"src/**/*.ts",
 				"package.json",
@@ -115,16 +100,11 @@
 				"scripts/fix-imports.ts",
 				"../tsconfig.json"
 			],
-			"outputs": [
-				"dist/**",
-				"dist-dts/**"
-			],
+			"outputs": ["dist/**", "dist-dts/**"],
 			"outputLogs": "new-only"
 		},
 		"drizzle-valibot#build": {
-			"dependsOn": [
-				"drizzle-orm#build"
-			],
+			"dependsOn": ["drizzle-orm#build"],
 			"inputs": [
 				"src/**/*.ts",
 				"package.json",
@@ -137,16 +117,11 @@
 				"scripts/fix-imports.ts",
 				"../tsconfig.json"
 			],
-			"outputs": [
-				"dist/**",
-				"dist-dts/**"
-			],
+			"outputs": ["dist/**", "dist-dts/**"],
 			"outputLogs": "new-only"
 		},
 		"drizzle-arktype#build": {
-			"dependsOn": [
-				"drizzle-orm#build"
-			],
+			"dependsOn": ["drizzle-orm#build"],
 			"inputs": [
 				"src/**/*.ts",
 				"package.json",
@@ -159,16 +134,11 @@
 				"scripts/fix-imports.ts",
 				"../tsconfig.json"
 			],
-			"outputs": [
-				"dist/**",
-				"dist-dts/**"
-			],
+			"outputs": ["dist/**", "dist-dts/**"],
 			"outputLogs": "new-only"
 		},
 		"eslint-plugin-drizzle#build": {
-			"dependsOn": [
-				"drizzle-orm#build"
-			],
+			"dependsOn": ["drizzle-orm#build"],
 			"inputs": [
 				"src/**/*.ts",
 				"package.json",
@@ -181,16 +151,11 @@
 				"scripts/fix-imports.ts",
 				"../tsconfig.json"
 			],
-			"outputs": [
-				"dist/**",
-				"dist-dts/**"
-			],
+			"outputs": ["dist/**", "dist-dts/**"],
 			"outputLogs": "new-only"
 		},
 		"drizzle-seed#build": {
-			"dependsOn": [
-				"drizzle-orm#build"
-			],
+			"dependsOn": ["drizzle-orm#build"],
 			"inputs": [
 				"src/**/*.ts",
 				"package.json",
@@ -203,17 +168,11 @@
 				"scripts/fix-imports.ts",
 				"../tsconfig.json"
 			],
-			"outputs": [
-				"dist/**",
-				"dist-dts/**"
-			],
+			"outputs": ["dist/**", "dist-dts/**"],
 			"outputLogs": "new-only"
 		},
 		"integration-tests#build": {
-			"dependsOn": [
-				"drizzle-orm#build",
-				"drizzle-seed#build"
-			],
+			"dependsOn": ["drizzle-orm#build", "drizzle-seed#build"],
 			"inputs": [
 				"src/**/*.ts",
 				"package.json",
@@ -226,10 +185,19 @@
 				"scripts/fix-imports.ts",
 				"../tsconfig.json"
 			],
-			"outputs": [
-				"dist/**",
-				"dist-dts/**"
-			],
+			"outputs": ["dist/**", "dist-dts/**"],
+			"outputLogs": "new-only"
+		},
+		"scratchpad#build": {
+			"cache": false,
+			"outputLogs": "new-only"
+		},
+		"scratchpad#test": {
+			"cache": false,
+			"outputLogs": "new-only"
+		},
+		"scratchpad#test:types": {
+			"cache": false,
 			"outputLogs": "new-only"
 		},
 		"attw-fork#build:artifact": {
@@ -439,16 +407,9 @@
 			"outputLogs": "new-only"
 		},
 		"pack": {
-			"dependsOn": [
-				"build",
-				"test:types"
-			],
-			"inputs": [
-				"dist/**"
-			],
-			"outputs": [
-				"package.tgz"
-			],
+			"dependsOn": ["build", "test:types"],
+			"inputs": ["dist/**"],
+			"outputs": ["package.tgz"],
 			"outputLogs": "new-only"
 		},
 		"pack:artifact": {
@@ -464,10 +425,7 @@
 			"outputLogs": "new-only"
 		},
 		"test": {
-			"dependsOn": [
-				"build",
-				"test:types"
-			],
+			"dependsOn": ["build", "test:types"],
 			"inputs": [
 				"tests/**/*.test.ts",
 				"tests/**/*.test.cjs",
