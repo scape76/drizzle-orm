@@ -1,5 +1,5 @@
 import { gt, sql } from 'drizzle-orm';
-import { client, db } from './db';
+import { db } from './db';
 import * as schema from './schema';
 
 (async () => {

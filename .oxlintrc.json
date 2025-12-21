@@ -1,8 +1,5 @@
 {
 	"jsPlugins": ["./eslint/eslint-plugin-drizzle-internal/index.mjs"],
-	"lint-staged": {
-		"!**/eslint/eslint-plugin-drizzle-internal/**": "echo skip"
-	},
 	"rules": {
 		"typescript/consistent-type-imports": [
 			"error",

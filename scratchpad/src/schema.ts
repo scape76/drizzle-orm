@@ -1,20 +1,8 @@
 import { index, pgEnum, pgTable } from 'drizzle-orm/pg-core';
 
-/**
- * E-commerce Schema for Drizzle ORM Beta Branch
- * Demonstrates new beta features:
- * - Optional column names (inferred from object keys)
- * - Array syntax for indexes
- * - Enum support with defaults
- * - generatedAlwaysAsIdentity() for auto-increment
- * - Foreign key constraints with onDelete actions
- */
-
-// Enums
 export const userRoleEnum = pgEnum('user_role', ['customer', 'admin', 'moderator']);
 export const orderStatusEnum = pgEnum('order_status', ['pending', 'processing', 'shipped', 'delivered', 'cancelled']);
 
-// 1. Users Table
 export const users = pgTable('users', (p) => ({
 	id: p.integer().primaryKey().generatedAlwaysAsIdentity(),
 	email: p.varchar({ length: 255 }).notNull().unique(),
@@ -27,7 +15,6 @@ export const users = pgTable('users', (p) => ({
 	index('users_role_idx').on(t.role),
 ]);
 
-// 2. Categories Table
 export const categories = pgTable('categories', (p) => ({
 	id: p.integer().primaryKey().generatedAlwaysAsIdentity(),
 	name: p.text({
@@ -39,13 +26,12 @@ export const categories = pgTable('categories', (p) => ({
 	index('categories_name_idx').on(t.name),
 ]);
 
-// 3. Products Table
 export const products = pgTable('products', (p) => ({
 	id: p.integer().primaryKey().generatedAlwaysAsIdentity(),
 	name: p.text().notNull(),
 	description: p.text(),
 	price: p.numeric({ precision: 10, scale: 2 }).notNull(),
-	stock: p.integer('name', { enum: [1, 2, 3, 4, 5] }).notNull().default(0),
+	stock: p.integer('name', { enum: [1, 2, 3, 4, 5] }).notNull().default(2),
 	categoryId: p.integer().notNull().references(() => categories.id, { onDelete: 'cascade' }),
 	createdAt: p.timestamp({ withTimezone: true }).notNull().defaultNow(),
 	updatedAt: p.timestamp({ withTimezone: true }).notNull().defaultNow(),
@@ -54,9 +40,8 @@ export const products = pgTable('products', (p) => ({
 	index('products_name_idx').on(t.name),
 ]);
 
-type Product = typeof products.$inferSelect;
+// type Product = typeof products.$inferSelect;
 
-// 4. Orders Table
 export const orders = pgTable('orders', (p) => ({
 	id: p.integer().primaryKey().generatedAlwaysAsIdentity(),
 	userId: p.integer().notNull().references(() => users.id),
@@ -70,7 +55,6 @@ export const orders = pgTable('orders', (p) => ({
 	index('orders_status_idx').on(t.status),
 ]);
 
-// 5. Order Items Table (Join table)
 export const orderItems = pgTable('order_items', (p) => ({
 	id: p.integer().primaryKey().generatedAlwaysAsIdentity(),
 	orderId: p.integer().notNull().references(() => orders.id, { onDelete: 'cascade' }),
@@ -82,7 +66,6 @@ export const orderItems = pgTable('order_items', (p) => ({
 	index('order_items_product_idx').on(t.productId),
 ]);
 
-// 6. Reviews Table
 export const reviews = pgTable('reviews', (p) => ({
 	id: p.integer().primaryKey().generatedAlwaysAsIdentity(),
 	text: p.text({ enum: ['hello', 'there'] }),
@@ -97,4 +80,4 @@ export const reviews = pgTable('reviews', (p) => ({
 	index('reviews_user_idx').on(t.userId),
 ]);
 
-type Review = typeof reviews.$inferSelect;
+// type Review = typeof reviews.$inferSelect;

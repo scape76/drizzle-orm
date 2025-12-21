@@ -1,5 +1,4 @@
 import Docker from 'dockerode';
-import { Client } from 'pg';
 
 export interface PostgresContainerConfig {
 	port?: number;
