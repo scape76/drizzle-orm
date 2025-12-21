@@ -28,10 +28,10 @@ export const categories = pgTable('categories', (p) => ({
 
 export const products = pgTable('products', (p) => ({
 	id: p.integer().primaryKey().generatedAlwaysAsIdentity(),
-	name: p.text().notNull(),
+	name: p.text({ enum: ['hello', 'there'] }).notNull(),
 	description: p.text(),
 	price: p.numeric({ precision: 10, scale: 2 }).notNull(),
-	stock: p.integer('name', { enum: [1, 2, 3, 4, 5] }).notNull().default(2),
+	stock: p.integer('name', { enum: [1, 2, 3, 4, 5] }),
 	categoryId: p.integer().notNull().references(() => categories.id, { onDelete: 'cascade' }),
 	createdAt: p.timestamp({ withTimezone: true }).notNull().defaultNow(),
 	updatedAt: p.timestamp({ withTimezone: true }).notNull().defaultNow(),
@@ -79,5 +79,3 @@ export const reviews = pgTable('reviews', (p) => ({
 	index('reviews_product_idx').on(t.productId),
 	index('reviews_user_idx').on(t.userId),
 ]);
-
-// type Review = typeof reviews.$inferSelect;

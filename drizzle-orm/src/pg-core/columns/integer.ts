@@ -1,4 +1,3 @@
-import type { GeneratedIdentityConfig } from '~/column-builder.ts';
 import type { ColumnBaseConfig } from '~/column.ts';
 import { entityKind } from '~/entity.ts';
 import { getColumnNameAndConfig, type Writable } from '~/utils.ts';
@@ -12,33 +11,26 @@ export class PgIntegerBuilder<TEnum extends [number, ...number[]] = [number, ...
 		data: TEnum[number];
 		enumValues: TEnum;
 		driverParam: number | string;
-	}, { enumValues: TEnum | undefined; generatedIdentity: GeneratedIdentityConfig }>
+	}, { enumValues: TEnum | undefined }>
 {
 	static override readonly [entityKind]: string = 'PgIntegerBuilder';
 
 	constructor(name: string, config: PgIntegerConfig<TEnum>) {
 		super(name, 'number int32', 'PgInteger');
-		this.config.enumValues = config.enum;
+		this.config.enumValues = config.enum as any;
 	}
 
 	/** @internal */
 	override build(table: PgTable<any>) {
-		return new PgInteger(table, this.config as any, this.config.enumValues);
+		return new PgInteger(table, this.config);
 	}
 }
 
-export class PgInteger<T extends ColumnBaseConfig<'number int32'>> extends PgColumn<T> {
+export class PgInteger<T extends ColumnBaseConfig<'number int32'>>
+	extends PgColumn<T, { enumValues: T['enumValues'] }>
+{
 	static override readonly [entityKind]: string = 'PgInteger';
-	override readonly enumValues;
-
-	constructor(
-		table: PgTable<any>,
-		config: any,
-		enumValues?: number[],
-	) {
-		super(table, config);
-		this.enumValues = enumValues;
-	}
+	override readonly enumValues = this.config.enumValues;
 
 	getSQLType(): string {
 		return 'integer';
