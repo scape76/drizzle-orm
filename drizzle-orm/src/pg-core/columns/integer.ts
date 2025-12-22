@@ -17,12 +17,12 @@ export class PgIntegerBuilder<TEnum extends [number, ...number[]] = [number, ...
 
 	constructor(name: string, config: PgIntegerConfig<TEnum>) {
 		super(name, 'number int32', 'PgInteger');
-		this.config.enumValues = config.enum as any;
+		this.config.enumValues = config.enum;
 	}
 
 	/** @internal */
 	override build(table: PgTable<any>) {
-		return new PgInteger(table, this.config);
+		return new PgInteger(table, this.config as any, this.config.enumValues);
 	}
 }
 
@@ -30,7 +30,16 @@ export class PgInteger<T extends ColumnBaseConfig<'number int32'>>
 	extends PgColumn<T, { enumValues: T['enumValues'] }>
 {
 	static override readonly [entityKind]: string = 'PgInteger';
-	override readonly enumValues = this.config.enumValues;
+	override readonly enumValues;
+
+	constructor(
+		table: PgTable<any>,
+		config: any,
+		enumValues?: number[],
+	) {
+		super(table, config);
+		this.enumValues = enumValues;
+	}
 
 	getSQLType(): string {
 		return 'integer';
